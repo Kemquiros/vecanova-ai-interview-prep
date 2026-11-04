@@ -1,0 +1,77 @@
+Metadata-Version: 2.4
+Name: interview_prep
+Version: 0.1.0
+Summary: VECANOVA AI Interview Prep & Career Acceleration Framework
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pydantic-settings>=2.0.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: rich>=13.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+
+# VECANOVA AI Interview Prep & Career Acceleration Platform
+
+> **Master technical interviews, system design, and LLMOps for Senior AI/ML Product Engineering roles.**
+
+---
+
+## 🌟 Overview
+
+This repository is designed for Senior Machine Learning and AI Engineers preparing to secure high-compensation remote positions in global tech consulting, healthcare, and biotech (e.g., Senior AI/ML Product Engineer roles). It combines rigorous theoretical knowledge, production code implementations, evaluation harnesses, and structured behavioral/system design pitches in English using the STAR methodology.
+
+---
+
+## 🗺️ Tactical Preparation Route
+
+The curriculum and prep framework are structured into 4 core blocks:
+
+### Block 1: The Bridge Between Traditional ML and GenAI
+- **Traditional ML**: Evaluation metrics for classification & regression (`F1-score`, `ROC-AUC`, `MAE`, `RMSE`), tree-based models (`XGBoost`), and anomaly detection (`Isolation Forests`, `Autoencoders`).
+- **Recommendation Systems**: Collaborative filtering vs. content-based, vector embeddings for hybrid semantic search.
+- **Narrative**: Integrating tabular outputs as structured context for decision-making AI agents.
+
+### Block 2: LLMOps, Evaluations, and Observability
+- **RAGAS Metrics**:
+  - `Faithfulness`: Verifying whether the LLM hallucinated or strictly adhered to retrieved context.
+  - `Answer Relevance`: Ensuring the response directly addresses the user query.
+  - `Context Recall & Precision`: Auditing vector DB retrieval performance.
+- **Traceability**: Using Langfuse / LangSmith to audit step-by-step latency, token counts, and cumulative costs in LangGraph DAGs.
+
+### Block 3: AI Guardrails, PII, and Healthcare Security
+- **PII / PHI Sanitization**: Pre-pipeline filtering of Personal Identifiable Information using Presidio or regex before hitting external APIs.
+- **Guardrails Frameworks**: NeMo Guardrails or Guardrails AI to block jailbreaks, topical drift, and data leaks.
+- **Private Deployments**: Open-source models (`Llama 3`, `Mistral`) inside private VPCs (AWS SageMaker / GCP Vertex AI).
+
+### Block 4: System Design & Product Interview (STAR Pitch in English)
+- **Enterprise RAG & Multi-Agent Architecture**: Hybrid retrieval (dense vector + sparse BM25 + Cohere Reranker), LangGraph deterministic state control, human-in-the-loop checkpoints.
+- **MLOps & Cloud Deployment**: End-to-end CI/CD, Docker containerization, AWS SageMaker / GCP Vertex AI endpoints, monitoring drift and latency SLAs.
+
+---
+
+## 🚀 Quick Start & Assessment CLI
+
+Run interactive mock technical assessments and evaluate PII sanitization and RAG metrics locally:
+
+```bash
+# Install dependencies in editable mode
+pip install -e .
+
+# Run unit and integration tests
+pytest
+
+# Run interactive mock assessment runner
+python scripts/run_mock_assessment.py
+```
+
+---
+
+## 📦 Architecture & Standards
+Following the **Anvil Engineering** standards and **Software Factory** methodology:
+- Spec-Driven Development (`docs/specs/`)
+- Architecture Decision Records (`docs/adr/`)
+- Functional Contracts (`docs/contracts/`)
+- Layered Memory (`.memory/`)
