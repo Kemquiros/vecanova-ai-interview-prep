@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-src/interview_prep/__init__.py
-src/interview_prep/evaluator.py
-src/interview_prep.egg-info/PKG-INFO
-src/interview_prep.egg-info/SOURCES.txt
-src/interview_prep.egg-info/dependency_links.txt
-src/interview_prep.egg-info/requires.txt
-src/interview_prep.egg-info/top_level.txt

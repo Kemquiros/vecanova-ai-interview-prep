@@ -1,51 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="VECANOVA AI Interview Prep — Neural Network and Interview Gates">
-  <title>VECANOVA AI Interview Prep</title>
-  <desc>A neural network node structure intersecting with technical interview gates and success checkmarks.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="vecanova ai interview prep — five industry pillars and a rising trajectory to the nova star">
+  <title>vecanova ai interview prep</title>
+  <desc>Five ascending pillars — one per industry — rise from a common baseline. A dotted trajectory climbs from the first pillar and culminates in a four-point nova star. Every career is a climb; every industry, a pillar; the nova, the role you are preparing to earn.</desc>
 
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="100%" stop-color="#1e293b"/>
+      <stop offset="0%" stop-color="#faf7f2"/>
+      <stop offset="100%" stop-color="#ffffff"/>
     </linearGradient>
-    <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#1d4ed8"/>
+    <linearGradient id="pillar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#31465e"/>
+      <stop offset="100%" stop-color="#17273b"/>
     </linearGradient>
-    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#06b6d4"/>
+    <linearGradient id="nova" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9a441"/>
+      <stop offset="100%" stop-color="#a6761c"/>
     </linearGradient>
   </defs>
 
   <rect width="640" height="400" fill="url(#bg)"/>
 
-  <!-- Neural Network Connections -->
-  <g stroke="#334155" stroke-width="2" fill="none">
-    <path d="M 120 200 L 220 120 L 320 200 L 420 120 L 520 200"/>
-    <path d="M 120 200 L 220 280 L 320 200 L 420 280 L 520 200"/>
-    <path d="M 220 120 L 320 200 L 420 280"/>
-    <path d="M 220 280 L 320 200 L 420 120"/>
+  <!-- Baseline: every career starts from the same ground -->
+  <line x1="110" y1="310" x2="560" y2="310" stroke="#d8d2c6" stroke-width="2"/>
+
+  <!-- Five pillars: Healthcare, Fintech, E-commerce, Logistics, SaaS -->
+  <g fill="url(#pillar)">
+    <rect x="140" y="240" width="44" height="70"  rx="5"/>
+    <rect x="210" y="210" width="44" height="100" rx="5"/>
+    <rect x="280" y="180" width="44" height="130" rx="5"/>
+    <rect x="350" y="150" width="44" height="160" rx="5"/>
+    <rect x="420" y="120" width="44" height="190" rx="5"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="12" fill="#8a8478" text-anchor="middle">
+    <text x="162" y="327">H</text>
+    <text x="232" y="327">F</text>
+    <text x="302" y="327">E</text>
+    <text x="372" y="327">L</text>
+    <text x="442" y="327">S</text>
   </g>
 
-  <!-- Neural Nodes -->
-  <circle cx="120" cy="200" r="16" fill="url(#nodeGrad)"/>
-  <circle cx="220" cy="120" r="14" fill="url(#nodeGrad)"/>
-  <circle cx="220" cy="280" r="14" fill="url(#nodeGrad)"/>
-  <circle cx="320" cy="200" r="18" fill="url(#accentGrad)"/>
-  <circle cx="420" cy="120" r="14" fill="url(#nodeGrad)"/>
-  <circle cx="420" cy="280" r="14" fill="url(#nodeGrad)"/>
-  <circle cx="520" cy="200" r="16" fill="url(#nodeGrad)"/>
+  <!-- The trajectory: dotted climb from the first pillar to the nova -->
+  <path d="M 150 235 Q 300 60 495 82" fill="none" stroke="#b07f1f" stroke-width="2.5"
+        stroke-dasharray="1 8" stroke-linecap="round"/>
+  <g fill="#ffffff" stroke="#b07f1f" stroke-width="2">
+    <circle cx="228" cy="160" r="4.5"/>
+    <circle cx="311" cy="109" r="4.5"/>
+    <circle cx="400" cy="83"  r="4.5"/>
+  </g>
 
-  <!-- Success Checkmarks at Gates -->
-  <g transform="translate(310, 190) scale(0.8)">
-    <path d="M-2 5 L4 12 L18 -4" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- The nova: the role you are preparing to earn -->
+  <circle cx="500" cy="80" r="34" fill="none" stroke="#c9922a" stroke-width="1.5" opacity="0.25"/>
+  <path d="M500 54 L507 73 L526 80 L507 87 L500 106 L493 87 L474 80 L493 73 Z" fill="url(#nova)"/>
+  <g fill="#c9922a" opacity="0.55">
+    <path d="M540 40 L542.5 47.5 L550 50 L542.5 52.5 L540 60 L537.5 52.5 L530 50 L537.5 47.5 Z"/>
+    <path d="M452 34 L454 39.5 L459.5 41.5 L454 43.5 L452 49 L450 43.5 L444.5 41.5 L450 39.5 Z"/>
   </g>
 
   <!-- Wordmark -->
-  <text x="60" y="340" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="800"
-        letter-spacing="2.0" fill="#ffffff">VECANOVA</text>
-  <text x="270" y="340" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="300"
-        letter-spacing="1.0" fill="#38bdf8">AI INTERVIEW PREP</text>
-  <text x="60" y="370" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14"
-        fill="#94a3b8">From Zero to Hero — Master Senior AI/ML Engineering across 5 Industries</text>
+  <text x="60" y="362" font-family="Georgia, 'Times New Roman', serif" font-size="42"
+        letter-spacing="2.5" fill="#16283c">VECANOVA</text>
+  <text x="288" y="362" font-family="Georgia, 'Times New Roman', serif" font-size="15"
+        letter-spacing="3" fill="#b07f1f">AI INTERVIEW PREP</text>
+  <text x="60" y="386" font-family="Georgia, 'Times New Roman', serif" font-size="14"
+        font-style="italic" fill="#6a7078">from zero to hero across five industries</text>
 </svg>

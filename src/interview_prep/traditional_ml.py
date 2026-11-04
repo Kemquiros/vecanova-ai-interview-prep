@@ -4,16 +4,18 @@ Covers Anomaly Detection (Isolation Forest simulation) and Recommendation System
 """
 
 import math
-from typing import List, Dict, Any
+from typing import Any
+
 
 class MockAnomalyDetector:
     """
     Simulates Isolation Forest or Autoencoder anomaly detection in clinical telemetry or transactions.
     """
+
     def __init__(self, threshold: float = 2.5):
         self.threshold = threshold
 
-    def compute_anomaly_score(self, features: List[float]) -> float:
+    def compute_anomaly_score(self, features: list[float]) -> float:
         """Compute distance from mean as proxy anomaly score."""
         if not features:
             return 0.0
@@ -25,7 +27,7 @@ class MockAnomalyDetector:
         score = max_dev / stdev
         return round(score, 2)
 
-    def is_anomaly(self, features: List[float]) -> bool:
+    def is_anomaly(self, features: list[float]) -> bool:
         return self.compute_anomaly_score(features) > self.threshold
 
 
@@ -33,18 +35,21 @@ class MockRecommenderSystem:
     """
     Simulates vector-based semantic recommendation and collaborative filtering for healthcare products/treatments.
     """
-    def __init__(self, item_embeddings: Dict[str, List[float]]):
+
+    def __init__(self, item_embeddings: dict[str, list[float]]):
         self.item_embeddings = item_embeddings
 
-    def cosine_similarity(self, v1: List[float], v2: List[float]) -> float:
+    def cosine_similarity(self, v1: list[float], v2: list[float]) -> float:
         dot_product = sum(a * b for a, b in zip(v1, v2))
-        norm1 = math.sqrt(sum(a ** 2 for a in v1))
-        norm2 = math.sqrt(sum(b ** 2 for b in v2))
+        norm1 = math.sqrt(sum(a**2 for a in v1))
+        norm2 = math.sqrt(sum(b**2 for b in v2))
         if norm1 == 0 or norm2 == 0:
             return 0.0
         return dot_product / (norm1 * norm2)
 
-    def recommend(self, query_embedding: List[float], top_k: int = 2) -> List[Dict[str, Any]]:
+    def recommend(
+        self, query_embedding: list[float], top_k: int = 2
+    ) -> list[dict[str, Any]]:
         scores = []
         for item_id, emb in self.item_embeddings.items():
             sim = self.cosine_similarity(query_embedding, emb)

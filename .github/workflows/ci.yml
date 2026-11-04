@@ -20,6 +20,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+        cache: pip
         
     - name: Install dependencies & package
       run: |
@@ -37,4 +38,4 @@ jobs:
         
     - name: Verify build artifact
       run: |
-        python -m build --sdist --wheel || pip install build && python -m build --sdist --wheel
+        python -m build --sdist --wheel
