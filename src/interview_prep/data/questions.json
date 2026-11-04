@@ -1,0 +1,472 @@
+{
+ "questions": [
+  {
+   "id": "q001",
+   "topic": "system_design",
+   "difficulty": "senior",
+   "industry": "healthcare",
+   "question": "Design a clinical documentation copilot serving 10,000 req/s with zero PHI leakage.",
+   "rubric": [
+    "PII/PHI sanitizer in the request path with audit trail before any model call",
+    "Hybrid retrieval: BM25 + dense ANN + cross-encoder rerank, LLM in a private VPC",
+    "Deterministic state graph (LangGraph) with human-in-the-loop on low faithfulness",
+    "Capacity math: reranker is the bottleneck; shard by clinical specialty"
+   ]
+  },
+  {
+   "id": "q002",
+   "topic": "system_design",
+   "difficulty": "senior",
+   "industry": "saas",
+   "question": "Design multi-tenant vector search where tenant A must never see tenant B's chunks.",
+   "rubric": [
+    "Compare namespace filtering vs index-per-tenant vs partitioned clusters",
+    "Noisy-neighbor controls: per-tenant rate limits and query cost caps",
+    "Fail-safe default: tenant filter applied at storage layer, not client layer",
+    "Per-tenant token metering for cost attribution and billing"
+   ]
+  },
+  {
+   "id": "q003",
+   "topic": "system_design",
+   "difficulty": "senior",
+   "industry": "fintech",
+   "question": "Design real-time fraud scoring at 5,000 TPS with sub-100ms p99 latency.",
+   "rubric": [
+    "Online feature store with precomputed embeddings; no request-time joins to cold storage",
+    "Cascade: cheap rules reject obvious cases, model scores the rest",
+    "Fallback to deterministic rules if model inference times out",
+    "Shadow deploys + PSI monitoring on feature distributions"
+   ]
+  },
+  {
+   "id": "q004",
+   "topic": "system_design",
+   "difficulty": "mid",
+   "industry": "ecommerce",
+   "question": "Design semantic product search for a 50M-SKU catalog.",
+   "rubric": [
+    "Two-stage retrieval: ANN recall top-1000, cross-encoder rerank top-100",
+    "Embedding refresh cadence vs catalog churn rate",
+    "Query understanding layer for typos, brand intent, and price intent",
+    "Relevance tension: semantic similarity vs CTR-learned ranking signals"
+   ]
+  },
+  {
+   "id": "q005",
+   "topic": "system_design",
+   "difficulty": "mid",
+   "industry": "logistics",
+   "question": "Design a delivery ETA prediction system serving 1M routes per day.",
+   "rubric": [
+    "Gradient boosting over traffic, weather, and route-graph features",
+    "Quantile loss to publish P50 and P90 ETAs, not point estimates",
+    "Segment-level drift monitoring (per region/hour, not global averages)",
+    "Fallback to historical medians when upstream features are stale"
+   ]
+  },
+  {
+   "id": "q006",
+   "topic": "system_design",
+   "difficulty": "mid",
+   "industry": "saas",
+   "question": "Design a document ingestion pipeline for 1M documents per day.",
+   "rubric": [
+    "Async queue with idempotency keys so retries never double-index",
+    "Chunking strategy per document type (contracts vs tickets vs PDFs)",
+    "Batch embedding API calls with exponential backoff and cost caps",
+    "Deduplication via content hash before spending embedding budget"
+   ]
+  },
+  {
+   "id": "q007",
+   "topic": "system_design",
+   "difficulty": "senior",
+   "industry": "saas",
+   "question": "Design a semantic cache that can never serve stale or wrong-tenant answers.",
+   "rubric": [
+    "Cache key: normalized query + tenant ID + model/prompt version",
+    "Similarity threshold trade-off: hit rate vs wrong-answer risk",
+    "TTL tied to content freshness per knowledge domain",
+    "Measure hit rate and p50 latency delta before/after rollout"
+   ]
+  },
+  {
+   "id": "q008",
+   "topic": "system_design",
+   "difficulty": "senior",
+   "industry": "healthcare",
+   "question": "Design evaluation-in-CI for prompt changes to a clinical summarizer.",
+   "rubric": [
+    "Golden set: 200+ clinician-labeled cases covering edge demographics",
+    "Faithfulness and relevance gates block merge below threshold",
+    "Canary rollout with shadow comparison against production champion",
+    "Rollback = revert prompt version; prompts are versioned code"
+   ]
+  },
+  {
+   "id": "q009",
+   "topic": "system_design",
+   "difficulty": "mid",
+   "industry": "fintech",
+   "question": "Design an AML alert triage copilot for compliance analysts.",
+   "rubric": [
+    "Retrieval over regulations, typologies, and prior case outcomes",
+    "Every suggestion must carry citations (reason codes)",
+    "Precision-first threshold: analyst review time is the cost driver",
+    "Immutable audit log of every generated recommendation"
+   ]
+  },
+  {
+   "id": "q010",
+   "topic": "llmops",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "Explain RAGAS faithfulness and how you would compute it at production scale.",
+   "rubric": [
+    "Decompose the answer into atomic claims, verify each against retrieved context",
+    "LLM-as-judge calibrated against a human-labeled holdout",
+    "Sample production traffic (not 100%) to control judge cost",
+    "Track faithfulness by segment: tenant, language, doc source"
+   ]
+  },
+  {
+   "id": "q011",
+   "topic": "llmops",
+   "difficulty": "senior",
+   "industry": "cross",
+   "question": "A prompt change improved faithfulness 4% but doubled cost. Walk through your decision.",
+   "rubric": [
+    "Marginal quality per dollar; compare against alternative spend (better retrieval)",
+    "Segment analysis: which tenants/queries actually need it",
+    "Middle path: route only hard queries to the expensive prompt",
+    "Decision framed with expected business metric movement"
+   ]
+  },
+  {
+   "id": "q012",
+   "topic": "llmops",
+   "difficulty": "mid",
+   "industry": "saas",
+   "question": "How do you attribute LLM cost per tenant in a multi-tenant product?",
+   "rubric": [
+    "Token metering at the gateway, not estimated from app logs",
+    "Per-tenant budget alerts before hard caps",
+    "Model tier mapped to pricing plan (cheap model for free tier)",
+    "Showback first, chargeback once finance trusts the numbers"
+   ]
+  },
+  {
+   "id": "q013",
+   "topic": "llmops",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "p99 latency tripled after a model upgrade. How do you debug it?",
+   "rubric": [
+    "Compare output token distributions: generation length often drifts",
+    "Trace waterfall per stage: retrieval vs rerank vs generation",
+    "Immediate mitigation: fallback routing to previous model",
+    "Prevent: output token caps, streaming, latency SLO gates in eval"
+   ]
+  },
+  {
+   "id": "q014",
+   "topic": "llmops",
+   "difficulty": "senior",
+   "industry": "cross",
+   "question": "Design a regression test suite for prompts.",
+   "rubric": [
+    "Golden set + adversarial set (injections, empty context, off-language)",
+    "CI gate with per-metric thresholds; red build blocks merge",
+    "Prompts versioned like code with diffs in review",
+    "Determinism: temperature 0, fixed seeds where the provider allows"
+   ]
+  },
+  {
+   "id": "q015",
+   "topic": "llmops",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "When is semantic caching a bad idea?",
+   "rubric": [
+    "Personalized or fast-changing context makes cached answers wrong",
+    "High cost of wrong answers (clinical, legal, financial advice)",
+    "Low hit-rate workloads pay complexity without savings",
+    "Instrument first: measure duplicate-query rate before building"
+   ]
+  },
+  {
+   "id": "q016",
+   "topic": "llmops",
+   "difficulty": "senior",
+   "industry": "healthcare",
+   "question": "Design guardrails without destroying latency.",
+   "rubric": [
+    "Tier by risk: cheap regex/classifier pre-filter on every request",
+    "Run independent safety checks in parallel, not serially",
+    "Async post-hoc audit for low-risk lanes; sync block only for high-risk",
+    "Budget: guardrail budget is part of the p99 SLO, not an afterthought"
+   ]
+  },
+  {
+   "id": "q017",
+   "topic": "llmops",
+   "difficulty": "senior",
+   "industry": "cross",
+   "question": "You must migrate a 100M-chunk index to a new embedding model. Plan it.",
+   "rubric": [
+    "Dual-index shadow period; serve from old, measure on new",
+    "Batch re-embedding with cost estimate and rate-limit awareness",
+    "Recall@k and nDCG evaluated on a fixed query set before cutover",
+    "Rollback: keep the old index warm until new one passes canary"
+   ]
+  },
+  {
+   "id": "q018",
+   "topic": "llmops",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "What do you monitor for a RAG application in production?",
+   "rubric": [
+    "Retrieval quality proxies: citation click-through, empty-retrieval rate",
+    "Faithfulness sampled daily against a labeled set",
+    "Latency percentiles per pipeline stage, not just end-to-end",
+    "Cost per request and query-distribution drift"
+   ]
+  },
+  {
+   "id": "q019",
+   "topic": "ml_core",
+   "difficulty": "mid",
+   "industry": "fintech",
+   "question": "PR-AUC vs ROC-AUC with 0.1% positives: which do you report and why?",
+   "rubric": [
+    "ROC-AUC looks healthy under extreme imbalance (true-positive rate dominates)",
+    "PR-AUC evaluates precision/recall where the positive class matters",
+    "Baseline PR-AUC equals class prevalence; compare against it",
+    "Map to business: fraud loss avoided per alert reviewed"
+   ]
+  },
+  {
+   "id": "q020",
+   "topic": "ml_core",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "A feature shows PSI 0.35 this week. What does it mean and what do you do?",
+   "rubric": [
+    "Severe drift (thresholds: <0.1 stable, 0.1-0.25 moderate, >0.25 severe)",
+    "Check upstream data quality before blaming the world",
+    "Measure model impact by segment; retrain or drop the feature",
+    "Add alerting so this is caught automatically next time"
+   ]
+  },
+  {
+   "id": "q021",
+   "topic": "ml_core",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "How do you use the KS statistic in model monitoring?",
+   "rubric": [
+    "Two-sample test comparing score or feature distributions",
+    "Detects shift PSI can miss on heavy tails",
+    "Complements per-feature PSI: KS on model scores, PSI on features",
+    "Caveat: very sensitive with large samples; effect size matters"
+   ]
+  },
+  {
+   "id": "q022",
+   "topic": "ml_core",
+   "difficulty": "senior",
+   "industry": "fintech",
+   "question": "Why must credit model probabilities be calibrated?",
+   "rubric": [
+    "Expected loss = PD x LGD x EAD; uncalibrated PD corrupts pricing",
+    "Isotonic or Platt scaling on a holdout; monitor calibration drift",
+    "Calibration is separable from ranking (discrimination)",
+    "Regulators expect documented calibration evidence"
+   ]
+  },
+  {
+   "id": "q023",
+   "topic": "ml_core",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "Explain how Isolation Forest isolates anomalies.",
+   "rubric": [
+    "Random recursive partitioning; anomalies isolate in fewer splits",
+    "Anomaly score from average path length: shorter = more anomalous",
+    "Why it works: anomalies are few and different",
+    "Strengths: no distance metric, linear time, weak on local anomalies"
+   ]
+  },
+  {
+   "id": "q024",
+   "topic": "ml_core",
+   "difficulty": "mid",
+   "industry": "ecommerce",
+   "question": "Cosine similarity vs dot product for recommendations?",
+   "rubric": [
+    "Cosine controls for magnitude: popularity/length bias",
+    "Dot product favors high-norm vectors; sometimes that is desired",
+    "With L2-normalized embeddings they rank identically",
+    "Scale matters: MIPS libraries assume normalized or handle it internally"
+   ]
+  },
+  {
+   "id": "q025",
+   "topic": "ml_core",
+   "difficulty": "senior",
+   "industry": "cross",
+   "question": "Describe a data leakage bug you have seen and how to prevent the class.",
+   "rubric": [
+    "Classic forms: target-derived features, time-travel joins, global statistics",
+    "Prevention: point-in-time feature store, group-aware CV",
+    "Symptom: offline metrics stellar, online metrics crater",
+    "Add a leakage checklist to model review"
+   ]
+  },
+  {
+   "id": "q026",
+   "topic": "ml_core",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "How do you decide a model retraining cadence?",
+   "rubric": [
+    "Drift-triggered beats calendar when you monitor PSI/KS",
+    "Cost of retraining vs cost of degradation, per segment",
+    "Champion-challenger: retrain, compare, promote deliberately",
+    "Freeze windows for business-critical periods"
+   ]
+  },
+  {
+   "id": "q027",
+   "topic": "ml_core",
+   "difficulty": "senior",
+   "industry": "fintech",
+   "question": "SHAP says a loan was rejected for feature X. What do you tell the customer?",
+   "rubric": [
+    "Distinguish global importance from local (per-decision) attribution",
+    "Translate top negative contributions into compliant reason codes",
+    "Adverse action notices are a legal requirement, not a courtesy",
+    "Never claim causality; SHAP is attribution, not explanation of cause"
+   ]
+  },
+  {
+   "id": "q028",
+   "topic": "behavioral",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "Tell me about a time you disagreed with a product manager about launching.",
+   "rubric": [
+    "Frame with data and user impact, not opinions",
+    "Propose the smallest reversible test that settles the question",
+    "Commit fully once the decision is made; disagree and commit",
+    "Outcome with a metric (adoption, incident rate, revenue)"
+   ]
+  },
+  {
+   "id": "q029",
+   "topic": "behavioral",
+   "difficulty": "senior",
+   "industry": "healthcare",
+   "question": "Describe a production hallucination incident you owned end to end.",
+   "rubric": [
+    "Triage first: severity, blast radius, containment",
+    "Root cause separated: retrieval miss vs model behavior vs prompt",
+    "Systemic fix: eval gate in CI so the class cannot recur",
+    "Blameless postmortem with tracked action items"
+   ]
+  },
+  {
+   "id": "q030",
+   "topic": "behavioral",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "Tell me about a deadline you were going to miss.",
+   "rubric": [
+    "Raised the signal early with options, not just the problem",
+    "Negotiated scope rather than quality",
+    "Delivered the negotiated slice with clean observability",
+    "What changed in planning afterward"
+   ]
+  },
+  {
+   "id": "q031",
+   "topic": "behavioral",
+   "difficulty": "senior",
+   "industry": "healthcare",
+   "question": "Describe a PII near-miss and what you changed because of it.",
+   "rubric": [
+    "Immediate containment: revoke, rotate, purge",
+    "Systemic fix: sanitizer in the request path with tests",
+    "Blameless postmortem shared with compliance",
+    "Follow-up audit to prove the fix class-wide"
+   ]
+  },
+  {
+   "id": "q032",
+   "topic": "behavioral",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "How have you brought a junior engineer to production ownership?",
+   "rubric": [
+    "Graduated ownership: reviews, then features, then on-call shadow",
+    "Teaching through design docs, not just code review comments",
+    "Measurable outcome: they shipped and operated a service",
+    "Honest feedback loops in both directions"
+   ]
+  },
+  {
+   "id": "q033",
+   "topic": "behavioral",
+   "difficulty": "senior",
+   "industry": "cross",
+   "question": "Tell me about delivering under deeply ambiguous requirements.",
+   "rubric": [
+    "Wrote assumptions down and validated them early",
+    "De-risked with a spike before committing the team",
+    "Checkpoint reviews replaced big-bang delivery",
+    "Final result vs the original ambiguity: what got resolved"
+   ]
+  },
+  {
+   "id": "q034",
+   "topic": "behavioral",
+   "difficulty": "senior",
+   "industry": "cross",
+   "question": "Describe an outage you caused and how you handled it.",
+   "rubric": [
+    "Fix forward, communicate on a fixed cadence",
+    "Own it without deflection; stakeholders remember comms",
+    "Postmortem with root cause and tracked preventive actions",
+    "What you personally changed in your process"
+   ]
+  },
+  {
+   "id": "q035",
+   "topic": "behavioral",
+   "difficulty": "mid",
+   "industry": "cross",
+   "question": "Tell me about pushing back on scope you considered unnecessary.",
+   "rubric": [
+    "Cost of complexity quantified (maintenance, latency, risk)",
+    "Alternative that met the underlying need cheaper",
+    "YAGNI argued with data, not taste",
+    "Either outcome: what shipped and what it cost"
+   ]
+  },
+  {
+   "id": "q036",
+   "topic": "behavioral",
+   "difficulty": "senior",
+   "industry": "cross",
+   "question": "Rebuilding stakeholder trust after a failed ML pilot.",
+   "rubric": [
+    "Honest retrospective: what was promised vs what was possible",
+    "Smaller win path with a metric everyone can verify",
+    "Weekly visibility on the chosen metric",
+    "Trust rebuilt through delivery, not narrative"
+   ]
+  }
+ ]
+}

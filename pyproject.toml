@@ -26,3 +26,6 @@ dev = [
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["interview_prep*"]
+
+[tool.setuptools.package-data]
+interview_prep = ["data/*.json"]
