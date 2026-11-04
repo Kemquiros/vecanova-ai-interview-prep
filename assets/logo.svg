@@ -58,7 +58,7 @@
   <!-- Wordmark -->
   <text x="60" y="362" font-family="Georgia, 'Times New Roman', serif" font-size="42"
         letter-spacing="2.5" fill="#16283c">VECANOVA</text>
-  <text x="288" y="362" font-family="Georgia, 'Times New Roman', serif" font-size="15"
+  <text x="334" y="362" font-family="Georgia, 'Times New Roman', serif" font-size="15"
         letter-spacing="3" fill="#b07f1f">AI INTERVIEW PREP</text>
   <text x="60" y="386" font-family="Georgia, 'Times New Roman', serif" font-size="14"
         font-style="italic" fill="#6a7078">from zero to hero across five industries</text>
