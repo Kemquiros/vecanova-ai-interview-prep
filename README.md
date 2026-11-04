@@ -2,6 +2,10 @@
 
 > **Master technical interviews, system design, and LLMOps for Senior AI/ML Product Engineering roles across 5 core industries.**
 
+<p align="center">
+  <img src="./assets/logo.svg" alt="VECANOVA AI Interview Prep Logo" width="640" />
+</p>
+
 ---
 
 ## 🌟 Overview
@@ -52,15 +56,6 @@ You can run the full masterclass interactively on Google Colab or via our intera
 2. [Tutorial 2: LLMOps, Evaluations, and Observability (RAGAS)](./docs/tutorials/02-llmops-evaluations-ragas.md)
 3. [Tutorial 3: AI Guardrails, PII, and Healthcare Compliance](./docs/tutorials/03-healthcare-guardrails-pii.md)
 4. [Tutorial 4: System Design & STAR Mastery (English)](./docs/tutorials/04-system-design-star-mastery.md)
-
----
-
-## 🔒 Is it Safe to Publish Publicly on GitHub?
-
-**Yes, 100% safe.** 
-- **No Secrets or Credentials**: The repository contains zero API keys, passwords, environment files (`.env`), or private internal endpoints.
-- **Purely Educational & Modular**: All code, documentation, specifications, and notebooks are built from scratch following open-source best practices.
-- **Zero Proprietary Data**: No confidential client data or proprietary code from employers is included. It is fully ready for an open-source public GitHub release under an MIT license.
 
 ---
 
