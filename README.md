@@ -1,5 +1,7 @@
 # VECANOVA AI Interview Prep & Career Acceleration Platform (From Zero to Hero)
 
+[English](./README.md) | [Español](./README.es.md)
+
 > **Master technical interviews, system design, and LLMOps for Senior AI/ML Product Engineering roles across 5 core industries.**
 
 <p align="center">
